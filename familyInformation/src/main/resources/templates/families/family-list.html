@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Families List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="
+    sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container">
+    <h3>Families Directory</h3>
+   <hr>
+    <a th:href="@{/families/addFamily}" class="btn btn-primary">Add Family</a>
+    <br><br>
+    <table class="table table-bordered table-striped ">
+        <thead class="table-dark">
+        <tr >
+            <td>First Name</td>
+            <td>Last  Name</td>
+            <td>Phone Number</td>
+            <td>Email</td>
+            <td>Action</td>
+        </tr>
+        </thead>
+
+        <tbody th:each="x:${familyMembers}">
+            <td th:text="${x.firstName}"></td>
+            <td th:text="${x.lastName}"></td>
+            <td th:text="${x.phNo}"></td>
+            <td th:text="${x.email}"></td>
+            <td> <a th:href="@{/families/updateFamily(familyId=${x.id})}" class="btn btn-info btn-sm">Update
+                </a>
+                <a th:href="@{/families/delete(familyId=${x.id})}" class="btn btn-danger btn-sm"
+               onclick="if (!(confirm('are you sure you want to delete this employee?'))) return false">Delete
+                </a>
+            </td>
+        </tr>
+
+        </tbody>
+
+    </table>
+
+
+</div>
+
+
+</body>
+</html>
